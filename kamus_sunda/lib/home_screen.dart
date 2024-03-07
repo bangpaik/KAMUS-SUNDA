@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
 
     try {
-      final response = await http.get(Uri.parse('http://192.168.213.42/KAMUS-SUNDA/get_kosakata.php'));
+      final response = await http.get(Uri.parse('http://192.168.0.23/KAMUS-SUNDA/get_kosakata.php'));
       print(response.body); // Debugging: Print response body to console
 
       if (response.statusCode == 200) {
