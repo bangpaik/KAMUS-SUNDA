@@ -55,8 +55,8 @@ class _HomeScreenState extends State<HomeScreen> {
     });
 
     try {
-      final response = await http.get(Uri.parse('http://192.168.0.23/KAMUS-SUNDA/get_kosakata.php'));
-      print(response.body); // Debugging: Print response body to console
+      final response = await http.get(Uri.parse('http://192.168.147.42/KAMUS-SUNDA/get_kosakata.php'));
+      // print(response.body); // Debugging: Print response body to console
 
       if (response.statusCode == 200) {
         final List<dynamic> responseData = json.decode(response.body)['data'];
@@ -81,8 +81,9 @@ class _HomeScreenState extends State<HomeScreen> {
   void searchKosakata(String query) {
     setState(() {
       filteredKosakataList = kosakataList.where((kosakata) {
-        // Filter data berdasarkan kata kunci pencarian
-        return kosakata.kosakata.toLowerCase().contains(query.toLowerCase());
+        // Filter data berdasarkan kata kunci pencarian pada kosakata dan terjemahan
+        return kosakata.kosakata.toLowerCase().contains(query.toLowerCase()) ||
+            kosakata.terjemahan.toLowerCase().contains(query.toLowerCase());
       }).toList();
     });
   }
